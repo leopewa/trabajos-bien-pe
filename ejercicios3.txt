@@ -1,0 +1,40 @@
+--CREAR 4 PROCEDIMIENTOS ALMACENADOS : RESTAR;MULTIPLICAR,DIVIDIR,PONTENCIAR.
+
+
+CREATE PROC sumarNumeros @n1 INT, @n2 INT AS
+BEGIN
+    SELECT @n1 + @n2 AS Resultado;
+END;
+GO
+
+CREATE PROC restarNumeros @n1 INT, @n2 INT AS
+BEGIN
+    SELECT @n1 - @n2 AS Resultado;
+END;
+GO
+
+CREATE PROC multiplicarNumeros @n1 INT, @n2 INT AS
+BEGIN
+    SELECT @n1 * @n2 AS Resultado;
+END;
+GO
+
+CREATE PROC dividirNumeros @n1 INT, @n2 INT AS
+BEGIN
+    IF @n2 = 0
+        SELECT 'Error' AS Resultado;
+    ELSE
+        SELECT CAST(@n1 AS DECIMAL(18,2)) / @n2 AS Resultado;
+END;
+GO
+
+CREATE PROC potenciarNumeros @b INT, @e INT AS
+BEGIN
+    SELECT POWER(@b,@e) AS Resultado;
+END;
+GO
+EXEC sumarNumeros 10,20; --RESPUESTA=30
+EXEC restarNumeros 50,15; -- RESPUSETA=35
+EXEC multiplicarNumeros 6,7;--RESPUESTA=42
+EXEC dividirNumeros 100,20;--RESPUESTA =5
+EXEC potenciarNumeros 2,8;--RESPUESTA =256
